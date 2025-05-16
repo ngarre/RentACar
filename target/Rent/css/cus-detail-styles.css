@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.detail-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.detail-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.detail-card {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.photo-container {
+    flex: 1 1 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+    padding: 20px;
+}
+
+.detail-photo {
+    /*max-width: 100%;*/
+    /*max-height: 300px;*/
+    /*object-fit: cover;*/
+    /*border-radius: 8px;*/
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.info-list {
+    flex: 2 1 400px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-item {
+    font-size: 1.1em;
+}
+
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.back-button {
+    background-color: #6c757d;
+    color: white;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}
+
+.edit-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+/* ===== RESET Y BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* ===== TÍTULO ===== */
+.titulo {
+    text-align: center;
+    margin: 40px 0 30px 0;
+    font-size: 2.5em;
+    color: #333;
+}
+
+/* ===== CONTENEDOR FORMULARIO ===== */
+.form-container {
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    padding: 30px 20px;
+}
+
+/* ===== FORMULARIO ===== */
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formulario label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.formulario input[type="text"],
+.formulario input[type="date"],
+.formulario input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1em;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+.formulario input[type="text"]:focus,
+.formulario input[type="date"]:focus,
+.formulario input[type="number"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+
+/* ===== BOTONES ===== */
+.btn {
+    padding: 10px 25px;
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Botón principal (Crear / Modificar) */
+button.enviar {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Botón volver */
+.back-button {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Hover effects */
+button.enviar:hover {
+    background-color: #45a049;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}
+
+/* ===== GRUPO DE BOTONES ===== */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
