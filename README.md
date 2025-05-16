@@ -22,8 +22,8 @@ Application for managing vehicles and customers. This project has been developed
 
 The database contains the `car` schema with two main tables:
 
-* **cars**: vehicle information
-* **users**: customer or registered user information
+* **coches**: vehicle information
+* **usuarios**: customer or registered user information
 
 ---
 
@@ -41,7 +41,7 @@ The database contains the `car` schema with two main tables:
 
 ### 2. Database Configuration
 
-1. Create the database and tables (cars, users) in MariaDB.
+1. Create the database and tables (coches, usuarios) in MariaDB.
 2. Adjust the credentials in the `application.properties` file or the corresponding file for your setup (depending on how your project is structured).
 
 ---
