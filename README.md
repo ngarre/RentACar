@@ -1,5 +1,3 @@
-Aquí tienes la traducción al inglés del contenido del README:
-
 ---
 
 # 🚗 Cars App 🚗
