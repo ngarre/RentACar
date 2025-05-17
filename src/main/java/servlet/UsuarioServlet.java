@@ -11,25 +11,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
 
-
 @MultipartConfig
 @WebServlet("/usuario")
 public class UsuarioServlet extends HttpServlet {
-
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String action = request.getParameter("action");
 
-        // Compruebo si estoy ante una eliminación
+        // Eliminación
         if ("delete".equals(action)) {
-            // Lógica para eliminar el usuario
             String idParam = request.getParameter("id");
             if (idParam != null && !idParam.isEmpty()) {
                 try {
@@ -38,20 +34,21 @@ public class UsuarioServlet extends HttpServlet {
                     db.connect();
                     UsuarioDao usuarioDao = new UsuarioDao(db.getConnection());
                     usuarioDao.deleteUsuarioById(id);
+//                    response.setContentType("text/plain");
+//                    response.getWriter().write("ok");
                     response.sendRedirect("customer-list.jsp");
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar el usuario");
+                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                    response.getWriter().write("Error al eliminar el usuario");
                 }
             } else {
-                response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID no proporcionado");
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().write("ID no proporcionado");
             }
-            return; // Salir después de la eliminación
+            return;
         }
 
-// Si no es una eliminación, proceder con la creación del usuario
-
-        // Obtengo los datos del formulario
+        // Creación o modificación
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String fechaStr = request.getParameter("fecha");
@@ -63,41 +60,40 @@ public class UsuarioServlet extends HttpServlet {
             inputStream = part.getInputStream();
         }
 
-        // Verificar si se trata de una modificación o alta
         String idParam = request.getParameter("id");
         int id = (idParam != null && !idParam.isEmpty()) ? Integer.parseInt(idParam) : 0;
 
-
-        // Creo el objeto Usuario
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setFechaNacimiento(Date.valueOf(fechaStr));
         usuario.setFianza((int) Double.parseDouble(fianzaStr));
 
-
         if (inputStream != null) {
             usuario.setFoto(inputStream);
         }
 
-
-        Database database = new Database();
-
-        try{
+        try {
+            Database database = new Database();
             database.connect();
             UsuarioDao usuarioDao = new UsuarioDao(database.getConnection());
 
             if (id > 0) {
                 usuario.setId(id);
                 usuarioDao.updateUsuario(usuario);
-            }else{
+            } else {
                 usuarioDao.insert(usuario);
             }
 
-            // Redirigir al index tras insertar
-            response.sendRedirect("customer-list.jsp");
+            // Respuesta "ok" esperada por el script
+            response.setContentType("text/plain");
+            response.getWriter().write("ok");
 
-        }catch (ClassNotFoundException | SQLException s) { }
-
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            response.getWriter().write("Error al guardar el usuario");
+        }
     }
+}
 }
